@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "types": ["node"],
+
+    "strict": true,
+    "lib": ["ESNext"],
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleDetection": "force",
+    "skipLibCheck": true,
+
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+
+    // Bundler mode
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+
+    // disabled because it would produce too much errors
+    "verbatimModuleSyntax": false,
+    "noEmit": true
+  }
+}

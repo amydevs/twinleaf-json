@@ -1,0 +1,12 @@
+{
+  "name": "twinleaf-json",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "pretty": "npm run --workspace=twinleaf-json-extractor generate -- ../web/public"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

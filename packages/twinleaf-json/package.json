@@ -1,0 +1,24 @@
+{
+  "name": "twinleaf-json",
+  "version": "1.0.0",
+  "scripts": {
+    "pretty": "prettier . --write",
+    "generate": "tsx index.ts",
+    "build": "tsx index.ts ./dist  --clean"
+  },
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "files": [
+    "dist/**/*"
+  ],
+  "exports": {
+    "./*": "./dist/*"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "tsx": "^4.19.2",
+    "prettier": "^3.3.3"
+  }
+}
