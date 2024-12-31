@@ -16,6 +16,13 @@ export async function extract(): Promise<Record<string, string>> {
     // black and white promos are just BWP
     else if (id === "bwp") {
       setAbbreviation = `BWP`;
+    }
+    // Nintendo Black Star Promos is just NP
+    else if (id === "np") {
+      setAbbreviation = "NP"
+    }
+    else if (id === "dpp"){
+      setAbbreviation = "DPP"
     } else if (id === "sm35") {
       setAbbreviation = `SHL`;
     } else if (ptcgoCode.startsWith("PR-")) {
