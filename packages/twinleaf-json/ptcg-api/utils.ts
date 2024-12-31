@@ -13,10 +13,6 @@ export async function extract(): Promise<Record<string, string>> {
     if (id === "cel25c") {
       continue;
     }
-    // sword and shield promos are listed as SWSH
-    else if (id === "swshp") {
-      setAbbreviation = "SWSH";
-    }
     // black and white promos are just BWP
     else if (id === "bwp") {
       setAbbreviation = `BWP`;

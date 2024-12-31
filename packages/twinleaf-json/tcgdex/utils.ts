@@ -73,10 +73,6 @@ export async function extract(): Promise<Record<string, string>> {
         else if (setInfo.id === "sma") {
           setAbbreviation = "HIF";
         }
-        // Hidden Fates Shiny Vault has code SHL
-        else if (setInfo.id === "sm3.5") {
-          setAbbreviation = "SHL";
-        }
         // Scarlet and Violet is actually SVI
         else if (setInfo.id === "sv01") {
           setAbbreviation = "SVI";
