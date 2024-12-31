@@ -76,12 +76,17 @@ export async function extract(): Promise<Record<string, string>> {
         // Hidden Fates Shiny Vault has code SHL
         else if (setInfo.id === "sm3.5") {
           setAbbreviation = "SHL";
-        } else if (setAbbreviation == null) {
+        }
+        else if (setAbbreviation?.startsWith("PR-")) {
+          setAbbreviation = setInfo.abbreviations?.official;
+        }
+        
+        if (setAbbreviation == null) {
           console.warn(
             `No official set abbreviation found for set id ${setInfo.id}, skipping...`,
           );
           continue;
-        }
+        }        
 
         const cardFilesDir = path.join(
           setFile.parentPath,
