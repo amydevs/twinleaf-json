@@ -62,14 +62,11 @@ export async function extract(): Promise<Record<string, string>> {
           setAbbreviation = setInfo.id;
         } else {
           setAbbreviation =
-            setInfo.abbreviations?.official ?? setInfo.tcgOnline;
+            setInfo.tcgOnline ?? setInfo.abbreviations?.official;
         }
 
-        if (setInfo.id === "basep") {
-          setAbbreviation = "PR";
-        }
         // sword and shield promos are listed as SWSH
-        else if (setInfo.id === "swshp") {
+        if (setInfo.id === "swshp") {
           setAbbreviation = "SWSH";
         }
         // Hidden Fates Shiny Vault has code HIF
