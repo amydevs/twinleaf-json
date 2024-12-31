@@ -28,11 +28,11 @@ async function main(args: string[]) {
   await fs.promises.mkdir(publicFolder, { recursive: true });
 
   const sourceDescriptions: Record<string, { fileName: string, extract: () => Promise<Record<string, string>>  }> = {
-    "Pokemon TCG API": {
+    "Pokemon TCG API (English Cards Only)": {
       fileName: "ptcgapi_large.json",
       extract: ptcgApiUtils.extract
     },
-    "TCGDex": {
+    "TCGDex Beta (Mixed English and Japanese Cards)": {
       fileName: "tcgdex_large.json",
       extract: tcgdexUtils.extract,
     }
