@@ -78,7 +78,7 @@ export async function extract(): Promise<Record<string, string>> {
           setAbbreviation = "SHL";
         }
         else if (setAbbreviation?.startsWith("PR-")) {
-          setAbbreviation = setInfo.abbreviations?.official;
+          setAbbreviation = setInfo.abbreviations?.official ?? setAbbreviation.substring(3);
         }
         
         if (setAbbreviation == null) {
