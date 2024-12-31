@@ -81,6 +81,10 @@ export async function extract(): Promise<Record<string, string>> {
         else if (setInfo.id === "sv01") {
           setAbbreviation = "SVI";
         }
+        // Stellar Crown
+        else if (setInfo.id === "sv07") {
+          setAbbreviation = "SCR";
+        }
         else if (setAbbreviation?.startsWith("PR-")) {
           setAbbreviation = setInfo.abbreviations?.official ?? setAbbreviation.substring(3);
         }
