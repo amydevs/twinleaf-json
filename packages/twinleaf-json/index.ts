@@ -1,5 +1,4 @@
 import * as ptcgApiUtils from "./ptcg-api/utils";
-import * as tcgdexUtils from "./tcgdex/utils";
 import * as util from "node:util";
 import * as fs from "node:fs";
 import * as path from "node:path";
@@ -32,10 +31,6 @@ async function main(args: string[]) {
       fileName: "ptcgapi_large.json",
       extract: ptcgApiUtils.extract
     },
-    "TCGDex Beta (Mixed English and Japanese Cards)": {
-      fileName: "tcgdex_large.json",
-      extract: tcgdexUtils.extract,
-    }
   };
 
   for (const [, desc] of Object.entries(sourceDescriptions)) {
