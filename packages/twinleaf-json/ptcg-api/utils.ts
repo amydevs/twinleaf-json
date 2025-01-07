@@ -19,12 +19,13 @@ export async function extract(): Promise<Record<string, string>> {
     }
     // Nintendo Black Star Promos is just NP
     else if (id === "np") {
-      setAbbreviation = "NP"
+      setAbbreviation = "NP";
     }
     else if (id === "dpp"){
-      setAbbreviation = "DPP"
-    } else if (id === "sm35") {
-      setAbbreviation = `SHL`;
+      setAbbreviation = "DPP";
+    }
+    else if (id === "swshp") {
+      setAbbreviation = "SWSH";
     } else if (ptcgoCode.startsWith("PR-")) {
       setAbbreviation = `${ptcgoCode.substring(3)}P`;
     }
