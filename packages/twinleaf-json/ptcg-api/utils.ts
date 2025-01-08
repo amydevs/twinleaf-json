@@ -45,7 +45,7 @@ export async function extract(): Promise<Record<string, string>> {
           );
           let key;
           // shining fates shiny vault does not use leading zeroes on the SV number
-          if (["swshp", "bwp"].includes(id)) {
+          if (["swshp", "bwp", "xyp"].includes(id)) {
             key = `${setAbbreviation} ${setDigits}`;
           } else {
             key = `${setAbbreviation} ${setWord ?? ""}${setDigits}`;
