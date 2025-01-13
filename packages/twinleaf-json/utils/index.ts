@@ -1,3 +1,5 @@
+export * from './cachedFetch';
+
 export function extractFromSetNumber(
   setNumber: string,
   removeLeadingZeroes = false,
