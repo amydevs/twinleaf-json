@@ -26,29 +26,42 @@ async function main(args: string[]) {
 
   await fs.promises.mkdir(publicFolder, { recursive: true });
 
-  const sourceDescriptions: Record<string, { fileName: string, extract: () => Promise<Record<string, string>>  }> = {
+  const sourceDescriptions: Record<string, {
+    variants: Record<string, {
+      filePath: string,
+      extract: () => Promise<Record<string, string>>,
+    }>
+  }> = {
     "Pokemon TCG API (English Cards Only)": {
-      fileName: "ptcgapi_large.json",
-      extract: ptcgApiUtils.extract
+      variants: {
+        "Large Images": {
+          filePath: "ptcgapi/large.json",
+          extract: () => ptcgApiUtils.extract({ imageSize: "large" })
+        },
+        "Small Images": {
+          filePath: "ptcgapi/small.json",
+          extract: () => ptcgApiUtils.extract({ imageSize: "small" })
+        }
+      }
     },
   };
 
   for (const [, desc] of Object.entries(sourceDescriptions)) {
-    const images = await desc.extract();
-    await fs.promises.writeFile(
-      path.join(publicFolder, desc.fileName),
-      JSON.stringify(images, Object.keys(images).sort(), 2),
-    );
+    for (const [, variant] of Object.entries(desc.variants)) {
+      const images = await variant.extract();
+      const filePath = path.join(publicFolder, variant.filePath);
+      await fs.promises.mkdir(path.dirname(filePath), { recursive: true });
+      await fs.promises.writeFile(
+        path.join(publicFolder, variant.filePath),
+        JSON.stringify(images, Object.keys(images).sort(), 2),
+      );
+    }
   }
 
   await fs.promises.writeFile(
     path.join(publicFolder, "manifest.json"),
     JSON.stringify(
-      Object.assign({}, ...Object.entries(sourceDescriptions).map(([source, desc]) => ({
-        [source]: {
-          fileName: desc.fileName,
-        }
-      }))),
+      sourceDescriptions,
       null,
       2
     ),

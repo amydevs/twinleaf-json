@@ -11,7 +11,7 @@
   "license": "ISC",
   "description": "",
   "files": [
-    "dist/**/*"
+    "dist"
   ],
   "exports": {
     "./*": "./dist/*"

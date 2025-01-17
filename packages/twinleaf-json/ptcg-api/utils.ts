@@ -1,7 +1,13 @@
 import sets from "../deps/ptcg-api-data/sets/en.json" with { type: "json" };
 import * as utils from "../utils";
 
-export async function extract(): Promise<Record<string, string>> {
+export async function extract({
+  imageSize,
+}: {
+  imageSize: "large" | "small"
+} = {
+  imageSize: "large",
+}): Promise<Record<string, string>> {
   const proms = [];
 
   for (const { id, ptcgoCode } of sets) {
@@ -50,7 +56,7 @@ export async function extract(): Promise<Record<string, string>> {
           } else {
             key = `${setAbbreviation} ${setWord ?? ""}${setDigits}`;
           }
-          output[key] = card.images.large ?? card.images.small;
+          output[key] = card.images[imageSize] ?? card.images.large ?? card.images.small;
         }
         return output;
       })(),
@@ -58,8 +64,4 @@ export async function extract(): Promise<Record<string, string>> {
   }
 
   return Object.assign({}, ...(await Promise.all(proms)));
-}
-
-function removeLeadingZeroes(input: string) {
-  return input.match(/^(0*)(.*)/)![2];
 }

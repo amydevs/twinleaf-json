@@ -19,7 +19,9 @@ const config = {
   //   defaultLocale: "en",
   // },
   transpilePackages: ["geist"],
-  
+  images: {
+    unoptimized: true,
+  }
 };
 
 export default config;
