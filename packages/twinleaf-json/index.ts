@@ -1,4 +1,5 @@
 import * as ptcgApiUtils from "./ptcg-api/utils";
+import * as tcgdexUtils from "./tcgdex/utils";
 import * as util from "node:util";
 import * as fs from "node:fs";
 import * as path from "node:path";
@@ -41,6 +42,18 @@ async function main(args: string[]) {
         "Small Images": {
           filePath: "ptcgapi/small.json",
           extract: () => ptcgApiUtils.extract({ imageSize: "small" })
+        }
+      }
+    },
+    "TCGDex (English + Japanese Cards, Beta)": {
+      variants: {
+        "Large Images": {
+          filePath: "tcgdex/large.json",
+          extract: () => tcgdexUtils.extract({ imageSize: "large" })
+        },
+        "Small Images": {
+          filePath: "tcgdex/small.json",
+          extract: () => tcgdexUtils.extract({ imageSize: "small" })
         }
       }
     },

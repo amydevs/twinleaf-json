@@ -1,3 +1,6 @@
 [submodule "packages/twinleaf-json/deps/ptcgi-api-data"]
 	path = packages/twinleaf-json/deps/ptcg-api-data
 	url = https://github.com/PokemonTCG/pokemon-tcg-data.git
+[submodule "packages/twinleaf-json/deps/tcgdex-data"]
+	path = packages/twinleaf-json/deps/tcgdex-data
+	url = https://github.com/tcgdex/cards-database.git
