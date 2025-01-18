@@ -7,8 +7,10 @@ import { FileJsonIcon, GithubIcon, SproutIcon } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "~/components/ui/card";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const router = useRouter();
   const cardsEntries = Object.entries(ptcgApiSmall);
   const slidingCards = [
     cardsEntries.slice(0, 20),
@@ -113,15 +115,15 @@ export default function Home() {
             <p>
               Click on your profile on the top right corner of the site, and click on the &quot;Show profile&quot; button.
             </p>
-            <Image width="1514" height="213" alt="Show profile screenshot" src="/images/show_profile.png" />
+            <Image width="1514" height="213" alt="Show profile screenshot" src={`${router.basePath}/images/show_profile.png`} />
             <p>
               Then, click on the &quot;Edit profile&quot; button underneath the navbar on the right, and then on the &quot;Images&quot; button within the dropdown menu.
             </p>
-            <Image width="169" height="159" alt="Edit profile screenshot" src="/images/edit_profile.png" />
+            <Image width="169" height="159" alt="Edit profile screenshot" src={`${router.basePath}/images/edit_profile.png`} />
             <p>
               Then, paste in the JSON URL that you copied to your clipboard earlier into the input field and hit the &quot;Save&quot; button.
             </p>
-            <Image width="909" height="502" alt="Edit images screenshot" src="/images/edit_images.png" />
+            <Image width="909" height="502" alt="Edit images screenshot" src={`${router.basePath}/images/edit_images.png`} />
           </CardContent>
         </Card>
       </section>
