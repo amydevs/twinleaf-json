@@ -49,7 +49,7 @@ export default function Home() {
           </CardHeader>
           <CardContent className="prose">
             <p>
-              Used to fill in your missing card images on twinleaf.gg.
+              Fill in your missing card images on <Link href="https://play.twinleaf.gg">play.twinleaf.gg</Link>.
             </p>
           </CardContent>
           <CardFooter className="flex gap-1">
@@ -110,7 +110,7 @@ export default function Home() {
               }
             </ul>
             <p>
-              Next, navigate to <Link href="https://play.twinleaf.gg">twinleaf.gg</Link> and login if you have not yet already.
+              Next, navigate to <Link href="https://play.twinleaf.gg">play.twinleaf.gg</Link> and login if you have not yet already.
             </p>
             <p>
               Click on your profile on the top right corner of the site, and click on the &quot;Show profile&quot; button.
