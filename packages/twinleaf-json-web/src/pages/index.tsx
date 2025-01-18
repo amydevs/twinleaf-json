@@ -124,6 +124,15 @@ export default function Home() {
               Then, paste in the JSON URL that you copied to your clipboard earlier into the input field and hit the &quot;Save&quot; button.
             </p>
             <Image width="909" height="502" alt="Edit images screenshot" src={`${router.basePath}/images/edit_images.png`} />
+            <h2 id="reporting-issues">
+              Reporting Issues
+            </h2>
+            <p>
+              To report issues, you can either leave a <Link href="https://github.com/amydevs/twinleaf-json/issues">GitHub issue</Link>, or send me a message on Discord at <code>amydev.me</code>.
+            </p>
+            <p>
+              Please include the URL of the JSON file you used so that I know which variant of the JSON has your specific issue. Furthermore, attaching your exported deck-list that contains the erroneous cards would be greatly appreciated!
+            </p>
           </CardContent>
         </Card>
       </section>
