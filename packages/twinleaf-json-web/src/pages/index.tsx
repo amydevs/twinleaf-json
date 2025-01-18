@@ -20,6 +20,8 @@ export default function Home() {
   return <>
     <Head>
       <title>Twinleaf Image JSON Repository</title>
+      <meta name="description" content="A repository of JSON files containing card image sources for the Twinleaf online simulator." />
+      <meta name="keywords" content="twinleaf,json,image,missing,simulator" />
     </Head>
     <main>
       <section className="w-full relative h-screen flex overflow-hidden flex-col justify-center gap-6">
