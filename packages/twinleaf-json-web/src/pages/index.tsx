@@ -38,7 +38,7 @@ export default function Home() {
             }
           </div>)
         }
-        <div className="absolute inset-0 flex justify-center items-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent from-0% to-background to-70%" />
+        <div className="absolute inset-0 flex justify-center items-center bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent from-0% to-background to-90%" />
       </section>
       <section className="max-w-4xl mx-auto sticky bottom-0">
         <Card className="border-b-0 rounded-b-none shadow-none">
