@@ -101,7 +101,7 @@ export default function Home() {
                     <ul>
                       {
                         Object.entries(desc.variants).map(([variantName, variant]) => <li key={variantName}>
-                          <Link href={`/image_jsons/${variant.filePath}`}>{variantName}</Link>
+                          <Link href={`/image-jsons/${variant.filePath}`}>{variantName}</Link>
                         </li>)
                       }
                     </ul>

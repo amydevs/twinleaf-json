@@ -45,5 +45,5 @@ yarn-error.log*
 # idea files
 .idea
 
-/public/image_jsons/
+/public/image-jsons/
 /public/images.json
