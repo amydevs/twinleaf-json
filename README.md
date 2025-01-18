@@ -1,0 +1,10 @@
+# Twinleaf JSON Repository Monorepo
+
+This repository is a monorepo that contains both the code for generating the JSON files from various sources, as well as the website hosted at https://amydev.me/twinleaf-json/.
+
+## Packages
+
+Packages in this monorepo are contained in the `packages` directory. Here, you can find:
+
+- `twinleaf-json` - This package contains the code to build the JSON files, as well as a manifest that describes the JSON files that have been built.
+- `twinleaf-json-web` - This package is a Next.js SSG SPA that serves as both the homepage and the guide for installation and usage.
