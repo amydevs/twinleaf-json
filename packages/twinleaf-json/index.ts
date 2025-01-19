@@ -35,11 +35,11 @@ async function main(args: string[]) {
   }> = {
     "Pokemon TCG API (English Cards Only)": {
       variants: {
-        "Large Images": {
+        "Hi-Res Images": {
           filePath: "ptcgapi/large.json",
           extract: () => ptcgApiUtils.extract({ imageSize: "large" })
         },
-        "Small Images": {
+        "Low-Res Images": {
           filePath: "ptcgapi/small.json",
           extract: () => ptcgApiUtils.extract({ imageSize: "small" })
         }
@@ -47,11 +47,11 @@ async function main(args: string[]) {
     },
     "TCGDex (English + Japanese Cards, Beta)": {
       variants: {
-        "Large Images": {
+        "Hi-Res Images": {
           filePath: "tcgdex/large.json",
           extract: () => tcgdexUtils.extract({ imageSize: "large" })
         },
-        "Small Images": {
+        "Low-Res Images": {
           filePath: "tcgdex/small.json",
           extract: () => tcgdexUtils.extract({ imageSize: "small" })
         }
