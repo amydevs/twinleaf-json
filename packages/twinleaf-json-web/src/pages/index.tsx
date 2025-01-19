@@ -6,11 +6,9 @@ import { FileJsonIcon, GithubIcon, SproutIcon } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "~/components/ui/card";
 import Head from "next/head";
-import { useRouter } from "next/router";
 import HomeContents from "~/components/HomeContents.mdx";
 
 export default function Home() {
-  const router = useRouter();
   const cardsEntries = Object.entries(ptcgApiSmall);
   const slidingCards = [
     cardsEntries.slice(0, 20),
