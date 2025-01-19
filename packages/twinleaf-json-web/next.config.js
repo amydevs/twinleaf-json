@@ -24,6 +24,9 @@ const config = {
   transpilePackages: ["geist"],
   images: {
     unoptimized: true,
+  },
+  experimental: {
+    mdxRs: true,
   }
 };
 

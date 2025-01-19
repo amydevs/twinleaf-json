@@ -7,7 +7,7 @@
     "prebuild": "node scripts/copy-jsons.mjs",
     "build": "next build",
     "check": "next lint && tsc --noEmit",
-    "dev": "next dev",
+    "dev": "next dev --turbo",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "preview": "next build && next start",
