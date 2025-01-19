@@ -4,10 +4,13 @@
  */
 import "./src/env.js";
 
+import createMDX from '@next/mdx';
+
 /** @type {import("next").NextConfig} */
 const config = {
   output: "export",
   reactStrictMode: true,
+  basePath: process.env.BASE_PATH ?? "",
 
   /**
    * If you are using `appDir` then you must comment the below `i18n` config out.
@@ -24,4 +27,6 @@ const config = {
   }
 };
 
-export default config;
+const withMDX = createMDX();
+
+export default withMDX(config);

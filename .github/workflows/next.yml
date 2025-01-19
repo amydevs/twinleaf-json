@@ -51,15 +51,15 @@ jobs:
         with:
           node-version: "22"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-        with:
-          # Automatically inject basePath in your Next.js configuration file and disable
-          # server side image optimization (https://nextjs.org/docs/api-reference/next/image#unoptimized).
-          #
-          # You may remove this line if you want to manage the configuration yourself.
-          static_site_generator: next
-          generator_config_file: ./packages/twinleaf-json-web/next.config.js
+      # - name: Setup Pages
+      #   uses: actions/configure-pages@v5
+      #   with:
+      #     # Automatically inject basePath in your Next.js configuration file and disable
+      #     # server side image optimization (https://nextjs.org/docs/api-reference/next/image#unoptimized).
+      #     #
+      #     # You may remove this line if you want to manage the configuration yourself.
+      #     static_site_generator: next
+      #     generator_config_file: ./packages/twinleaf-json-web/next.config.js
       - name: Restore cache
         uses: actions/cache@v4
         with:
@@ -76,6 +76,8 @@ jobs:
         run: cd ./packages/twinleaf-json && ${{ steps.detect-package-manager.outputs.manager }} run build
       - name: Build with Next.js
         run: cd ./packages/twinleaf-json-web && ${{ steps.detect-package-manager.outputs.manager }} run build
+        env:
+          BASE_PATH: /${{ github.event.repository.name }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

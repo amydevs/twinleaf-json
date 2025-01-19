@@ -1,0 +1,47 @@
+import imagesManifest from "twinleaf-json/manifest.json";
+import Link from "next/link";
+
+## Installation Guide
+
+With this guide, you will be able to replace the default Twinleaf images with the images of the actual cards from various sources.
+
+First, you will need to choose one of the JSON files below to use as the sources for your images. Copy the link of the one you have chosen to your clipboard.
+
+The available image JSON sources:
+
+<ul>
+{
+    Object.entries(imagesManifest).map(([key, desc]) => {
+        return <li key={key}>
+            {key}
+            <ul>
+                {
+                Object.entries(desc.variants).map(([variantName, variant]) => <li key={variantName}>
+                    <Link href={`/image-jsons/${variant.filePath}`}>{variantName}</Link>
+                </li>)
+                }
+            </ul>
+        </li>;
+    })
+}
+</ul>
+
+Next, navigate to [play.twinleaf.gg](https://play.twinleaf.gg) and login if you have not yet already.
+
+Click on your profile on the top right corner of the site, and click on the "Show profile" button.
+
+![Show profile screenshot](/images/show_profile.png)
+
+Then, click on the "Edit profile" button underneath the navbar on the right, and then on the "Images" button within the dropdown menu.
+
+![Edit profile screenshot](/images/edit_profile.png)
+
+Then, paste in the JSON URL that you copied to your clipboard earlier into the input field and hit the &quot;Save&quot; button.
+
+![Edit images screenshot](/images/edit_images.png)
+
+## Reporting Issues
+
+To report issues, you can either leave a [GitHub issue](https://github.com/amydevs/twinleaf-json/issues), or send me a message on Discord at `amydev.me`.
+
+Please include the URL of the JSON file you used so that I know which variant of the JSON has your specific issue. Furthermore, attaching your exported deck-list that contains the erroneous cards would be greatly appreciated!
