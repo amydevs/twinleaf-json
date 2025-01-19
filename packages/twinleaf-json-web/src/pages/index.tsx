@@ -7,7 +7,7 @@ import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "~/components/ui/card";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import ReadMe from "~/components/ReadMe.mdx";
+import HomeContents from "~/components/HomeContents.mdx";
 
 export default function Home() {
   const router = useRouter();
@@ -82,7 +82,7 @@ export default function Home() {
       <section className="max-w-4xl mx-auto">
         <Card className="border-t-0 rounded-t-none">
           <CardContent className="prose max-w-none">
-            <ReadMe />
+            <HomeContents />
           </CardContent>
         </Card>
       </section>
