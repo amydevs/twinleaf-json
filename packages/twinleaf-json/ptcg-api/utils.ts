@@ -2,12 +2,10 @@ import sets from "../deps/ptcg-api-data/sets/en.json" with { type: "json" };
 import * as utils from "../utils";
 
 export async function extract({
-  imageSize,
+  imageSize = "large",
 }: {
-  imageSize: "large" | "small"
-} = {
-  imageSize: "large",
-}): Promise<Record<string, string>> {
+  imageSize?: "large" | "small"
+} = {}): Promise<Record<string, string>> {
   const proms = [];
 
   for (const { id, ptcgoCode } of sets) {

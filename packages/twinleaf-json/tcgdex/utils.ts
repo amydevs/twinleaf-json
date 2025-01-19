@@ -9,12 +9,10 @@ import type {
   import * as tcgdexUtils from "./utils";
   
   export async function extract({
-    imageSize,
+    imageSize = "large",
   }: {
-    imageSize: "large" | "small"
-  } = {
-    imageSize: "large",
-  }): Promise<Record<string, string>> {
+    imageSize?: "large" | "small"
+  } = {}): Promise<Record<string, string>> {
     const imgs: Record<string, string> = {};
   
     const dataFolders = ["data", "data-asia"] as const;
@@ -147,13 +145,13 @@ import type {
     seriesId: string,
     setId: string,
     setNumber: string,
-    options: {
+    {
+      quality = "high",
+      extension = "webp",
+    }: {
       quality?: "high" | "low";
       extension?: "png" | "webp" | "jpg";
-    } = {
-      quality: "high",
-      extension: "webp",
-    },
+    } = {}
   ) {
-    return `https://assets.tcgdex.net/en/${seriesId}/${setId}/${setNumber}/${options.quality}.${options.extension}`;
+    return `https://assets.tcgdex.net/en/${seriesId}/${setId}/${setNumber}/${quality}.${extension}`;
   }
