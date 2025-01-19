@@ -4,7 +4,7 @@
  */
 import "./src/env.js";
 
-import createMDX from '@next/mdx';
+import createMDX from "@next/mdx";
 
 /** @type {import("next").NextConfig} */
 const config = {
@@ -27,7 +27,7 @@ const config = {
   },
   experimental: {
     mdxRs: true,
-  }
+  },
 };
 
 const withMDX = createMDX();
