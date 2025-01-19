@@ -5,6 +5,7 @@
 import "./src/env.js";
 
 import createMDX from "@next/mdx";
+import rehypeSlug from "rehype-slug";
 
 /** @type {import("next").NextConfig} */
 const config = {
@@ -25,11 +26,12 @@ const config = {
   images: {
     unoptimized: true,
   },
-  experimental: {
-    mdxRs: true,
-  },
 };
 
-const withMDX = createMDX();
+const withMDX = createMDX({
+  options: {
+    rehypePlugins: [rehypeSlug]
+  }
+});
 
 export default withMDX(config);
