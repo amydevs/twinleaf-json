@@ -13,6 +13,7 @@ import {
 } from "~/components/ui/card";
 import Head from "next/head";
 import HomeContents from "~/components/HomeContents.mdx";
+import cardBackPlaceholder from "~/lib/cardBackPlaceholder";
 
 export default function Home() {
   const cardsEntries = Object.entries(ptcgApiSmall);
@@ -61,6 +62,7 @@ export default function Home() {
                         src={imageUrl}
                         width={180}
                         height={250}
+                        placeholder={cardBackPlaceholder}
                         loading="lazy"
                       />
                     </div>
