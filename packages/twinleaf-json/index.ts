@@ -1,5 +1,5 @@
-import * as ptcgApiUtils from "./ptcg-api/utils";
-import * as tcgdexUtils from "./tcgdex/utils";
+import * as ptcgApiUtils from "./sources/ptcg-api/utils";
+import * as tcgdexUtils from "./sources/tcgdex/utils";
 import * as util from "node:util";
 import * as fs from "node:fs";
 import * as path from "node:path";

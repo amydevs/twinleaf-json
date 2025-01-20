@@ -19,6 +19,6 @@
 
     // disabled because it would produce too much errors
     "verbatimModuleSyntax": false,
-    "noEmit": true
+    "noEmit": true,
   }
 }

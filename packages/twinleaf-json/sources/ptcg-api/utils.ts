@@ -1,5 +1,5 @@
-import sets from "../deps/ptcg-api-data/sets/en.json" with { type: "json" };
-import * as utils from "../utils";
+import sets from "../../deps/ptcg-api-data/sets/en.json" with { type: "json" };
+import * as utils from "../../utils";
 
 export async function extract({
   imageSize = "large",

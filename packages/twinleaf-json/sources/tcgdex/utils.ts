@@ -1,11 +1,11 @@
 import type {
     Serie as TCGDexSerie,
     Set as TCGDexSet,
-  } from "../deps/tcgdex-data/interfaces";
+  } from "../../deps/tcgdex-data/interfaces";
   import * as fs from "node:fs";
   import * as url from "node:url";
   import * as path from "node:path";
-  import * as utils from "../utils";
+  import * as utils from "../../utils";
   import * as tcgdexUtils from "./utils";
   
   export async function extract({
