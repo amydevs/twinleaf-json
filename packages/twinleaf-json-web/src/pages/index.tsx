@@ -84,7 +84,7 @@ export default function Home() {
                 </h1>
               </CardTitle>
             </CardHeader>
-            <CardContent className="prose">
+            <CardContent className="prose prose-a:text-primary">
               <p>
                 Fill in your missing card images on{" "}
                 <Link href="https://play.twinleaf.gg">play.twinleaf.gg</Link>.
@@ -115,7 +115,7 @@ export default function Home() {
         </section>
         <section className="max-w-4xl mx-auto">
           <Card className="border-t-0 rounded-t-none">
-            <CardContent className="prose max-w-none">
+            <CardContent className="prose prose-a:text-primary max-w-none">
               <HomeContents />
             </CardContent>
           </Card>
