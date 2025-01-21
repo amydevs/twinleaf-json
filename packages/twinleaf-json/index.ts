@@ -34,18 +34,6 @@ async function main(args: string[]) {
       extract: () => Promise<Record<string, string>>,
     }>
   }> = {
-    "TCGDex (English + Japanese Cards, Canary)": {
-      variants: {
-        "Hi-Res Images": {
-          filePath: "tcgdex/large.json",
-          extract: () => tcgdexUtils.extract({ imageSize: "large" })
-        },
-        "Low-Res Images": {
-          filePath: "tcgdex/small.json",
-          extract: () => tcgdexUtils.extract({ imageSize: "small" })
-        }
-      }
-    },
     "Pokemon TCG API (English Cards Only, Stable)": {
       variants: {
         "Hi-Res Images": {
@@ -55,6 +43,18 @@ async function main(args: string[]) {
         "Low-Res Images": {
           filePath: "ptcgapi/small.json",
           extract: () => ptcgApiUtils.extract({ imageSize: "small" })
+        }
+      }
+    },
+    "TCGDex (English + Japanese Cards, Canary)": {
+      variants: {
+        "Hi-Res Images": {
+          filePath: "tcgdex/large.json",
+          extract: () => tcgdexUtils.extract({ imageSize: "large" })
+        },
+        "Low-Res Images": {
+          filePath: "tcgdex/small.json",
+          extract: () => tcgdexUtils.extract({ imageSize: "small" })
         }
       }
     },
