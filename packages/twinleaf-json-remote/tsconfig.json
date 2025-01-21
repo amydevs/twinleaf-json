@@ -1,24 +1,25 @@
 {
   "compilerOptions": {
-    "types": ["node"],
-
-    "strict": true,
-    "lib": ["ESNext"],
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleDetection": "force",
-    "skipLibCheck": true,
-
+    /* Base Options: */
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true,
-
-    // Bundler mode
-    "moduleResolution": "bundler",
+    "skipLibCheck": true,
+    "target": "ESNext",
+    "allowJs": true,
     "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "isolatedModules": true,
 
-    // disabled because it would produce too much errors
-    "verbatimModuleSyntax": false,
+    /* Strictness */
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "checkJs": true,
+
+    /* Bundled projects */  
+    "lib": ["ESNext"],
     "noEmit": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "incremental": true,
   }
 }

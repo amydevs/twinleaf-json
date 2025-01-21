@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "scripts": {
     "pretty": "prettier . --write",
-    "build": "tsx index.ts ./dist  --clean"
+    "build": "tsx index.ts ./dist  --clean",
+    "lint": "eslint **/*.ts",
+    "lint:fix": "eslint \"**/*.ts\" --ignore-pattern node_modules/ --fix",
+    "format:write": "prettier --write \"**/*.{ts,js}\" --cache",
+    "format:check": "prettier --check \"**/*.{ts,js}\" --cache"
   },
   "type": "module",
   "author": "",
@@ -19,6 +23,11 @@
     "@types/node": "^20",
     "tsx": "^4.19.2",
     "prettier": "^3.3.3",
+    "@types/eslint": "^8.56.10",
+    "@typescript-eslint/eslint-plugin": "^8.1.0",
+    "@typescript-eslint/parser": "^8.1.0",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^15.0.1",
     "twinleaf-json-remote": "file:../twinleaf-json-remote"
   }
 }

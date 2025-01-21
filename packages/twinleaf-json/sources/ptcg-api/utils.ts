@@ -4,7 +4,7 @@ import * as utils from "../../utils";
 export async function extract({
   imageSize = "large",
 }: {
-  imageSize?: "large" | "small"
+  imageSize?: "large" | "small";
 } = {}): Promise<Record<string, string>> {
   const proms = [];
 
@@ -24,11 +24,9 @@ export async function extract({
     // Nintendo Black Star Promos is just NP
     else if (id === "np") {
       setAbbreviation = "NP";
-    }
-    else if (id === "dpp"){
+    } else if (id === "dpp") {
       setAbbreviation = "DPP";
-    }
-    else if (id === "swshp") {
+    } else if (id === "swshp") {
       setAbbreviation = "SWSH";
     } else if (ptcgoCode.startsWith("PR-")) {
       setAbbreviation = `${ptcgoCode.substring(3)}P`;
@@ -37,11 +35,19 @@ export async function extract({
     proms.push(
       (async () => {
         const cards = (
-          await import(`../../deps/ptcg-api-data/cards/en/${id}.json`, {
+          (await import(`../../deps/ptcg-api-data/cards/en/${id}.json`, {
             with: { type: "json" },
-          })
+          })) as {
+            default: {
+              number: string;
+              images: {
+                large?: string;
+                small?: string;
+              };
+            }[];
+          }
         ).default;
-        let output: Record<string, string> = {};
+        const output: Record<string, string> = {};
         for (const card of cards) {
           const [setWord, setDigits] = utils.extractFromSetNumber(
             card.number,
@@ -54,12 +60,20 @@ export async function extract({
           } else {
             key = `${setAbbreviation} ${setWord ?? ""}${setDigits}`;
           }
-          output[key] = card.images[imageSize] ?? card.images.large ?? card.images.small;
+          const imageUrl =
+            card.images[imageSize] ?? card.images.large ?? card.images.small;
+          if (imageUrl == null) {
+            continue;
+          }
+          output[key] = imageUrl;
         }
         return output;
       })(),
     );
   }
 
-  return Object.assign({}, ...(await Promise.all(proms)));
+  return Object.assign({}, ...(await Promise.all(proms))) as Record<
+    string,
+    string
+  >;
 }

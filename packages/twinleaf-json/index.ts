@@ -10,15 +10,15 @@ async function main(args: string[]) {
     args,
     options: {
       clean: {
-        type: 'boolean',
+        type: "boolean",
         default: false,
-        short: 'c'
-      }
+        short: "c",
+      },
     },
     allowPositionals: true,
   });
   if (parsedArgs.positionals[2] == null) {
-    throw "Output path is missing";
+    throw new Error("Output path is missing");
   }
   const publicFolder = path.resolve(parsedArgs.positionals[2]);
 
@@ -28,35 +28,41 @@ async function main(args: string[]) {
 
   await fs.promises.mkdir(publicFolder, { recursive: true });
 
-  const sourceDescriptions: Record<string, {
-    variants: Record<string, {
-      filePath: string,
-      extract: () => Promise<Record<string, string>>,
-    }>
-  }> = {
+  const sourceDescriptions: Record<
+    string,
+    {
+      variants: Record<
+        string,
+        {
+          filePath: string;
+          extract: () => Promise<Record<string, string>>;
+        }
+      >;
+    }
+  > = {
     "Pokemon TCG API (English Cards Only, Stable)": {
       variants: {
         "Hi-Res Images": {
           filePath: "ptcgapi/large.json",
-          extract: () => ptcgApiUtils.extract({ imageSize: "large" })
+          extract: () => ptcgApiUtils.extract({ imageSize: "large" }),
         },
         "Low-Res Images": {
           filePath: "ptcgapi/small.json",
-          extract: () => ptcgApiUtils.extract({ imageSize: "small" })
-        }
-      }
+          extract: () => ptcgApiUtils.extract({ imageSize: "small" }),
+        },
+      },
     },
     "TCGDex (English + Japanese Cards, Canary)": {
       variants: {
         "Hi-Res Images": {
           filePath: "tcgdex/large.json",
-          extract: () => tcgdexUtils.extract({ imageSize: "large" })
+          extract: () => tcgdexUtils.extract({ imageSize: "large" }),
         },
         "Low-Res Images": {
           filePath: "tcgdex/small.json",
-          extract: () => tcgdexUtils.extract({ imageSize: "small" })
-        }
-      }
+          extract: () => tcgdexUtils.extract({ imageSize: "small" }),
+        },
+      },
     },
   };
 
@@ -72,25 +78,21 @@ async function main(args: string[]) {
     }
   }
 
-  for (const [, desc] of Object.entries(remoteManifest)) {
-    for (const [, variant] of Object.entries(desc.variants)) {
-      const images = await import(`twinleaf-json-remote/${variant.filePath}`);
-      const filePath = path.join(publicFolder, variant.filePath);
-      await fs.promises.mkdir(path.dirname(filePath), { recursive: true });
-      await fs.promises.writeFile(
-        path.join(publicFolder, variant.filePath),
-        JSON.stringify(images, Object.keys(images).sort(), 2),
-      );
-    }
-  }
+  // for (const [, desc] of Object.entries(remoteManifest)) {
+  //   for (const [, variant] of Object.entries(desc.variants)) {
+  //     const images = await import(`twinleaf-json-remote/${variant.filePath}`);
+  //     const filePath = path.join(publicFolder, variant.filePath);
+  //     await fs.promises.mkdir(path.dirname(filePath), { recursive: true });
+  //     await fs.promises.writeFile(
+  //       path.join(publicFolder, variant.filePath),
+  //       JSON.stringify(images, Object.keys(images).sort(), 2),
+  //     );
+  //   }
+  // }
 
   await fs.promises.writeFile(
     path.join(publicFolder, "manifest.json"),
-    JSON.stringify(
-      { ...sourceDescriptions, ...remoteManifest },
-      null,
-      2
-    ),
+    JSON.stringify({ ...sourceDescriptions, ...remoteManifest }, null, 2),
   );
 }
 

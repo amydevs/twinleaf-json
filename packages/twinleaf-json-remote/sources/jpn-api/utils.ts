@@ -1,63 +1,69 @@
-import * as utils from '../../utils';
 type SetsResponse = {
-    id: number;
-    set_code: string;
+  id: number;
+  set_code: string;
 }[];
 
 type CardsResponse = {
-    data: {
-        id: number,
-        sequenceNumber: number,
-        printedNumber: string,
-        imageUrl: string,
-    }[],
-    page: number,
-    pageSize: number,
-    count: number,
-    totalCount: number
+  data: {
+    id: number;
+    sequenceNumber: number;
+    printedNumber: string;
+    imageUrl: string;
+  }[];
+  page: number;
+  pageSize: number;
+  count: number;
+  totalCount: number;
 };
 
 export async function extract(): Promise<Record<string, string>> {
-    const sets = await fetch("https://www.jpn-cards.com/v2/set/").then(p => p.json()) as SetsResponse;
+  const sets = (await fetch("https://www.jpn-cards.com/v2/set/").then((p) =>
+    p.json(),
+  )) as SetsResponse;
 
-    // throttled fetch
-    const splitSets = splitToNChunks(sets, 2);
+  // throttled fetch
+  const splitSets = splitToNChunks(sets, 2);
 
-    console.log(`${splitSets.length} requests are set to be run simultaneously`);
+  console.log(`${splitSets.length} requests are set to be run simultaneously`);
 
-    const proms = splitSets.map(async (e) => {
-        const result: Record<string, string> = {};
-        for (const set of e) {
-            let page = 1;
-            while (true) {
-                console.log(`Completed set ${set.set_code}`);
-                const cardsText = await fetch(`https://www.jpn-cards.com/v2/card/set_id=${set.id}&page=${page}`).then((e) => e.text());
-                let cards: CardsResponse;
-                try {
-                    cards = JSON.parse(cardsText) as CardsResponse;
-                }
-                catch {
-                    throw new Error(`Could not parse: https://www.jpn-cards.com/v2/card/set_id=${set.id}&page=${page}`);
-                } 
-                for (const card of cards.data) {
-                    result[`${set.set_code} ${card.printedNumber}`] = card.imageUrl;
-                }
-                if (cards.page * cards.pageSize >= cards.totalCount) {
-                    break;
-                }
-                page++;
-            }
+  const proms = splitSets.map(async (e) => {
+    const result: Record<string, string> = {};
+    for (const set of e) {
+      let page = 1;
+      while (true) {
+        console.log(`Completed set ${set.set_code}`);
+        const cardsText = await fetch(
+          `https://www.jpn-cards.com/v2/card/set_id=${set.id}&page=${page}`,
+        ).then((e) => e.text());
+        let cards: CardsResponse;
+        try {
+          cards = JSON.parse(cardsText) as CardsResponse;
+        } catch {
+          throw new Error(
+            `Could not parse: https://www.jpn-cards.com/v2/card/set_id=${set.id}&page=${page}`,
+          );
         }
-        return result;
-    });
-    
-    return Object.assign({}, ...(await Promise.all(proms)));
+        for (const card of cards.data) {
+          result[`${set.set_code} ${card.printedNumber}`] = card.imageUrl;
+        }
+        if (cards.page * cards.pageSize >= cards.totalCount) {
+          break;
+        }
+        page++;
+      }
+    }
+    return result;
+  });
+
+  return Object.assign({}, ...(await Promise.all(proms))) as Promise<
+    Record<string, string>
+  >;
 }
 
 function splitToNChunks<T>(array: Array<T>, n: number): Array<Array<T>> {
-    let result = [];
-    for (let i = n; i > 0; i--) {
-        result.push(array.splice(0, Math.ceil(array.length / i)));
-    }
-    return result;
+  const result: Array<Array<T>> = [];
+  for (let i = n; i > 0; i--) {
+    result.push(array.splice(0, Math.ceil(array.length / i)));
+  }
+  return result;
 }

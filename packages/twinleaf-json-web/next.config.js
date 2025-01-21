@@ -30,8 +30,8 @@ const config = {
 
 const withMDX = createMDX({
   options: {
-    rehypePlugins: [rehypeSlug]
-  }
+    rehypePlugins: [rehypeSlug],
+  },
 });
 
 export default withMDX(config);
