@@ -1,0 +1,9 @@
+{
+  "TCG Collector": {
+    "variants": {
+      "Images": {
+        "filePath": "tcgcollector/images.json"
+      }
+    }
+  }
+}
