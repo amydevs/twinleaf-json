@@ -33,14 +33,14 @@ async function main(args: string[]) {
       extract: () => Promise<Record<string, string>>,
     }>
   }> = {
-    // "JPN Cards API": {
-    //   variants: {
-    //     "Images": {
-    //       filePath: "jpnapi/images.json",
-    //       extract: () => jpnApiUtils.extract()
-    //     },
-    //   }
-    // },
+    "JPN Cards API": {
+      variants: {
+        "Images": {
+          filePath: "jpnapi/images.json",
+          extract: () => jpnApiUtils.extract()
+        },
+      }
+    },
     "TCG Collector": {
       variants: {
         "Images": {
