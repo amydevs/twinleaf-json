@@ -25,7 +25,7 @@ export async function extract(): Promise<Record<string, string>> {
         const proms = Array.from({ length: Math.ceil(firstPageResult.totalCardCount / pageSize) })
             .fill(null)
             .map(async (_, i) => {
-                const result = await fetch(`https://www.tcgcollector.com/cards/partials/card-search-result/intl?releaseDateOrder=newToOld&displayAs=images&cardsPerPage=${pageSize}&page=${i + 1}`).then((p) => p.json()) as CardPageResult;
+                const result = await fetch(`https://www.tcgcollector.com/cards/partials/card-search-result/${region}?releaseDateOrder=newToOld&displayAs=images&cardsPerPage=${pageSize}&page=${i + 1}`).then((p) => p.json()) as CardPageResult;
                 const $ = cheerio.load(result.cardSearchResultHtml);
                 const results: Record<string, string> = {};
                 $(".card-image-grid-item.has-image").each((_, e) => {
