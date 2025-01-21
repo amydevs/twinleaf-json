@@ -43,7 +43,7 @@ async function main(args: string[]) {
         },
       }
     },
-    "TCG Collector": {
+    "TCG Collector (English + Japanese Cards, Beta)": {
       variants: {
         "Images": {
           filePath: "tcgcollector/images.json",
