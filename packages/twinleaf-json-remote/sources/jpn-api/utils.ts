@@ -25,7 +25,8 @@ export async function extract(): Promise<Record<string, string>> {
     const splitSets: Array<SetsResponse> = Array.from({ length: 2 }, (_, i) =>
         sets.slice(i * size, i * size + size)
     );
-    console.log(splitSets.length);
+
+    console.log(`${splitSets.length} requests are set to be run simultaneously`);
 
     const proms = splitSets.map(async (e) => {
         const result: Record<string, string> = {};
