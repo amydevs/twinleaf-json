@@ -10,7 +10,7 @@ First, you will need to choose one of the JSON files below to use as the sources
 The available image JSON sources:
 
 <ul>
-  {Object.entries(imagesManifest).filter(([key, desc]) => !("hidden" in desc) || desc.hidden != true).map(([key, desc]) => {
+  {Object.entries(imagesManifest).map(([key, desc]) => {
     return (
       <li key={key}>
         {key}
