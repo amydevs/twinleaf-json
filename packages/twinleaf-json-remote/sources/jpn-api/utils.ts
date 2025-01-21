@@ -21,17 +21,18 @@ export async function extract(): Promise<Record<string, string>> {
     const sets = await fetch("https://www.jpn-cards.com/v2/set/").then(p => p.json()) as SetsResponse;
 
     // throttled fetch
-    const size = Math.ceil(sets.length / 2);
+    const size = Math.ceil(sets.length / 10);
     const splitSets: Array<SetsResponse> = Array.from({ length: 2 }, (_, i) =>
         sets.slice(i * size, i * size + size)
     );
+    console.log(splitSets.length);
 
     const proms = splitSets.map(async (e) => {
         const result: Record<string, string> = {};
         for (const set of e) {
             let page = 1;
             while (true) {
-                console.log(`req to https://www.jpn-cards.com/v2/card/set_id=${set.id}&page=${page}`);
+                console.log(`Completed set ${set.set_code}`);
                 const cardsText = await fetch(`https://www.jpn-cards.com/v2/card/set_id=${set.id}&page=${page}`).then((e) => e.text());
                 let cards: CardsResponse;
                 try {
