@@ -63,11 +63,14 @@ jobs:
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Update Packages
-        run: git submodule update --remote --merge
+        run: |
+          git pull --recurse-submodules
+          git submodule update --remote --recursive
       - name: Update Remote Sources
         run: cd packages/twinleaf-json-remote && npm run build
       - name: Commit update
         run: |
             git config --global user.name 'Git bot'
             git config --global user.email 'bot@noreply.github.com'
+            git add -A
             git commit -am "chore: auto updated remote sources" && git push || echo "No changes to commit"
