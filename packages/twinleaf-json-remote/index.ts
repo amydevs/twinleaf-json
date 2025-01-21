@@ -34,15 +34,15 @@ async function main(args: string[]) {
       extract: () => Promise<Record<string, string>>,
     }>
   }> = {
-    "JPN Cards API": {
-      hidden: true,
-      variants: {
-        "Images": {
-          filePath: "jpnapi/images.json",
-          extract: () => jpnApiUtils.extract()
-        },
-      }
-    },
+    // "JPN Cards API": {
+    //   hidden: true,
+    //   variants: {
+    //     "Images": {
+    //       filePath: "jpnapi/images.json",
+    //       extract: () => jpnApiUtils.extract()
+    //     },
+    //   }
+    // },
     "TCG Collector (English + Japanese Cards, Beta)": {
       variants: {
         "Images": {
