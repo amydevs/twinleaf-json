@@ -13,10 +13,12 @@ export async function extract(): Promise<Record<string, string>> {
     for (const region of regions) {
         const sets = await fetch(`https://www.tcgcollector.com/sets/partials/set-search-result/${region}?setMode=anyCardVariant&releaseDateOrder=newToOld&displayAs=list`).then(p => p.json()) as { setSearchResultHtml: string };
         const $ = cheerio.load(sets.setSearchResultHtml);
-        const setNameMap: Record<string, string> = region === "intl" ? {
+        const setNameMap: Record<string, string | undefined> = region === "intl" ? {
             "Yellow A Alternate": "HIF",
             "SWSH Black Star Promos": "SWSH",
-        } : {};
+        } : {
+            "Battle Academy": undefined,
+        };
         $(".set-list-item.set-has-code.set-has-cards.set-has-symbol").each((_, e) => {
             const element = $(e);
             setNameMap[element.find(".set-symbol").attr("alt")!.trim()] = element.find(".set-list-item-set-code").html()!.trim();
@@ -38,7 +40,7 @@ export async function extract(): Promise<Record<string, string>> {
                     if (setCode == null) {
                         return;
                     }
-                    if (["SWSH", "BWP", "XYP"].includes(setCode)) {
+                    if (region === "jp" || ["SWSH", "BWP", "XYP"].includes(setCode)) {
                         results[`${setCode} ${setNumber}`] = imageSrc; 
                     }
                     else {
