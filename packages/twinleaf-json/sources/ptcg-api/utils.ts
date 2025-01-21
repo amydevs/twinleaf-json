@@ -37,7 +37,7 @@ export async function extract({
     proms.push(
       (async () => {
         const cards = (
-          await import(`../deps/ptcg-api-data/cards/en/${id}.json`, {
+          await import(`../../deps/ptcg-api-data/cards/en/${id}.json`, {
             with: { type: "json" },
           })
         ).default;

@@ -21,7 +21,7 @@ import type {
       const seriesFiles = await fs.promises.readdir(
         path.dirname(
           url.fileURLToPath(
-            import.meta.resolve(`../deps/tcgdex-data/${dataFolder}/`),
+            import.meta.resolve(`../../deps/tcgdex-data/${dataFolder}/`),
           ),
         ),
         {
