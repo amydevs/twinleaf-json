@@ -21,10 +21,7 @@ export async function extract(): Promise<Record<string, string>> {
     const sets = await fetch("https://www.jpn-cards.com/v2/set/").then(p => p.json()) as SetsResponse;
 
     // throttled fetch
-    const size = Math.ceil(sets.length / 10);
-    const splitSets: Array<SetsResponse> = Array.from({ length: 2 }, (_, i) =>
-        sets.slice(i * size, i * size + size)
-    );
+    const splitSets = splitToNChunks(sets, 10);
 
     console.log(`${splitSets.length} requests are set to be run simultaneously`);
 
@@ -55,4 +52,12 @@ export async function extract(): Promise<Record<string, string>> {
     });
     
     return Object.assign({}, ...(await Promise.all(proms)));
+}
+
+function splitToNChunks<T>(array: Array<T>, n: number): Array<Array<T>> {
+    let result = [];
+    for (let i = n; i > 0; i--) {
+        result.push(array.splice(0, Math.ceil(array.length / i)));
+    }
+    return result;
 }
