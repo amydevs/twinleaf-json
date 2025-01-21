@@ -3,6 +3,7 @@ import * as tcgdexUtils from "./sources/tcgdex/utils";
 import * as util from "node:util";
 import * as fs from "node:fs";
 import * as path from "node:path";
+import remoteManifest from "twinleaf-json-remote/manifest.json";
 
 async function main(args: string[]) {
   const parsedArgs = util.parseArgs({
@@ -71,10 +72,22 @@ async function main(args: string[]) {
     }
   }
 
+  for (const [, desc] of Object.entries(remoteManifest)) {
+    for (const [, variant] of Object.entries(desc.variants)) {
+      const images = await import(`twinleaf-json-remote/${variant.filePath}`);
+      const filePath = path.join(publicFolder, variant.filePath);
+      await fs.promises.mkdir(path.dirname(filePath), { recursive: true });
+      await fs.promises.writeFile(
+        path.join(publicFolder, variant.filePath),
+        JSON.stringify(images, Object.keys(images).sort(), 2),
+      );
+    }
+  }
+
   await fs.promises.writeFile(
     path.join(publicFolder, "manifest.json"),
     JSON.stringify(
-      sourceDescriptions,
+      Object.assign({}, sourceDescriptions, ...Object.entries(remoteManifest).filter(([, src]) => "hidden" in src && src.hidden).map(([k, v]) => ({[k]: v}))),
       null,
       2
     ),

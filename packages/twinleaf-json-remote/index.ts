@@ -28,12 +28,14 @@ async function main(args: string[]) {
   await fs.promises.mkdir(publicFolder, { recursive: true });
 
   const sourceDescriptions: Record<string, {
+    hidden?: boolean,
     variants: Record<string, {
       filePath: string,
       extract: () => Promise<Record<string, string>>,
     }>
   }> = {
     "JPN Cards API": {
+      hidden: true,
       variants: {
         "Images": {
           filePath: "jpnapi/images.json",

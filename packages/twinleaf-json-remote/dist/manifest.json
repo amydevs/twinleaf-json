@@ -1,5 +1,6 @@
 {
   "JPN Cards API": {
+    "hidden": true,
     "variants": {
       "Images": {
         "filePath": "jpnapi/images.json"
