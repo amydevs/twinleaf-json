@@ -21,7 +21,7 @@ export async function extract(): Promise<Record<string, string>> {
     const sets = await fetch("https://www.jpn-cards.com/v2/set/").then(p => p.json()) as SetsResponse;
 
     // throttled fetch
-    const splitSets = splitToNChunks(sets, 10);
+    const splitSets = splitToNChunks(sets, 2);
 
     console.log(`${splitSets.length} requests are set to be run simultaneously`);
 
