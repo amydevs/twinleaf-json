@@ -87,7 +87,7 @@ async function main(args: string[]) {
   await fs.promises.writeFile(
     path.join(publicFolder, "manifest.json"),
     JSON.stringify(
-      { sourceDescriptions, ...remoteManifest },
+      { ...sourceDescriptions, ...remoteManifest },
       null,
       2
     ),
