@@ -43,14 +43,14 @@ async function main(args: string[]) {
     //     },
     //   }
     // },
-    "TCG Collector (English + Japanese Cards, Beta)": {
-      variants: {
-        "Images": {
-          filePath: "tcgcollector/images.json",
-          extract: () => tcgCollectorUtils.extract()
-        },
-      }
-    },
+    // "TCG Collector (English + Japanese Cards, Beta)": {
+    //   variants: {
+    //     "Images": {
+    //       filePath: "tcgcollector/images.json",
+    //       extract: () => tcgCollectorUtils.extract()
+    //     },
+    //   }
+    // },
   };
 
   for (const [srcName, desc] of Object.entries(sourceDescriptions)) {
