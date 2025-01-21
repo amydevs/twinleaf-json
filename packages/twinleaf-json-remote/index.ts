@@ -51,8 +51,8 @@ async function main(args: string[]) {
     },
   };
 
-  for (const [, desc] of Object.entries(sourceDescriptions)) {
-    for (const [, variant] of Object.entries(desc.variants)) {
+  for (const [srcName, desc] of Object.entries(sourceDescriptions)) {
+    for (const [variantName, variant] of Object.entries(desc.variants)) {
       const images = await variant.extract();
       const filePath = path.join(publicFolder, variant.filePath);
       await fs.promises.mkdir(path.dirname(filePath), { recursive: true });
@@ -60,6 +60,7 @@ async function main(args: string[]) {
         path.join(publicFolder, variant.filePath),
         JSON.stringify(images, Object.keys(images).sort(), 2),
       );
+      console.log(`Finished ${srcName} ${variantName}`);
     }
   }
 
