@@ -1,4 +1,11 @@
 {
+  "JPN Cards API": {
+    "variants": {
+      "Images": {
+        "filePath": "jpnapi/images.json"
+      }
+    }
+  },
   "TCG Collector": {
     "variants": {
       "Images": {
