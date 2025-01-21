@@ -87,7 +87,7 @@ async function main(args: string[]) {
   await fs.promises.writeFile(
     path.join(publicFolder, "manifest.json"),
     JSON.stringify(
-      Object.assign({}, sourceDescriptions, ...Object.entries(remoteManifest).filter(([, src]) => "hidden" in src && src.hidden).map(([k, v]) => ({[k]: v}))),
+      { sourceDescriptions, ...remoteManifest },
       null,
       2
     ),
