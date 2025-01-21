@@ -1,5 +1,5 @@
 {
-  "name": "twinleaf-json",
+  "name": "twinleaf-json-remote",
   "version": "1.0.0",
   "scripts": {
     "pretty": "prettier . --write",
@@ -17,7 +17,10 @@
   },
   "devDependencies": {
     "@types/node": "^20",
-    "tsx": "^4.19.2",
-    "prettier": "^3.3.3"
+    "prettier": "^3.3.3",
+    "tsx": "^4.19.2"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0"
   }
 }
