@@ -78,17 +78,17 @@ async function main(args: string[]) {
     }
   }
 
-  // for (const [, desc] of Object.entries(remoteManifest)) {
-  //   for (const [, variant] of Object.entries(desc.variants)) {
-  //     const images = await import(`twinleaf-json-remote/${variant.filePath}`);
-  //     const filePath = path.join(publicFolder, variant.filePath);
-  //     await fs.promises.mkdir(path.dirname(filePath), { recursive: true });
-  //     await fs.promises.writeFile(
-  //       path.join(publicFolder, variant.filePath),
-  //       JSON.stringify(images, Object.keys(images).sort(), 2),
-  //     );
-  //   }
-  // }
+  for (const [, desc] of Object.entries(remoteManifest)) {
+    for (const [, variant] of Object.entries(desc.variants)) {
+      const images = await import(`twinleaf-json-remote/${variant.filePath}`);
+      const filePath = path.join(publicFolder, variant.filePath);
+      await fs.promises.mkdir(path.dirname(filePath), { recursive: true });
+      await fs.promises.writeFile(
+        path.join(publicFolder, variant.filePath),
+        JSON.stringify(images, Object.keys(images).sort(), 2),
+      );
+    }
+  }
 
   await fs.promises.writeFile(
     path.join(publicFolder, "manifest.json"),
