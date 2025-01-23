@@ -26,6 +26,9 @@ const config = {
   images: {
     unoptimized: true,
   },
+  publicRuntimeConfig: {
+    modifiedDate: new Date().toISOString(),
+  },
 };
 
 const withMDX = createMDX({

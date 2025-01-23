@@ -14,8 +14,10 @@ import {
 import Head from "next/head";
 import HomeContents from "~/components/HomeContents.mdx";
 import cardBackPlaceholder from "~/lib/cardBackPlaceholder";
+import getConfig from "next/config";
 
 export default function Home() {
+  const { publicRuntimeConfig } = getConfig();
   const cardsEntries = Object.entries(ptcgApiSmall);
   const slidingCards = [
     cardsEntries.slice(0, 20),
@@ -90,6 +92,9 @@ export default function Home() {
               <p>
                 Fill in your missing card images on{" "}
                 <Link href="https://play.twinleaf.gg">play.twinleaf.gg</Link>.
+              </p>
+              <p>
+                Last updated {new Date(publicRuntimeConfig.modifiedDate).toLocaleString()}.
               </p>
             </CardContent>
             <CardFooter className="flex gap-1">
