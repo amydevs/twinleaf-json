@@ -94,7 +94,8 @@ export default function Home() {
                 <Link href="https://play.twinleaf.gg">play.twinleaf.gg</Link>.
               </p>
               <p>
-                Last updated {new Date(publicRuntimeConfig.modifiedDate).toLocaleString()}.
+                Last updated{" "}
+                {new Date(publicRuntimeConfig.modifiedDate).toLocaleString()}.
               </p>
             </CardContent>
             <CardFooter className="flex gap-1">

@@ -52,11 +52,11 @@ async function main(args: string[]) {
     // },
     "Limitless TCG (English + Japanese Cards, Canary)": {
       variants: {
-        "Images": {
+        Images: {
           filePath: "limitlesstcg/images.json",
-          extract: () => limitlessTcgUtils.extract()
+          extract: () => limitlessTcgUtils.extract(),
         },
-      }
+      },
     },
   };
 
