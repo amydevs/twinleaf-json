@@ -1,1 +1,9 @@
-{}
+{
+  "Limitless TCG (English + Japanese Cards, Canary)": {
+    "variants": {
+      "Images": {
+        "filePath": "limitlesstcg/images.json"
+      }
+    }
+  }
+}
