@@ -1,5 +1,6 @@
 // import * as jpnApiUtils from "./sources/jpn-api/utils";
 // import * as tcgCollectorUtils from "./sources/tcg-collector/utils";
+import * as limitlessTcgUtils from "./sources/limitless-tcg/utils";
 import * as util from "node:util";
 import * as fs from "node:fs";
 import * as path from "node:path";
@@ -49,14 +50,14 @@ async function main(args: string[]) {
     //     },
     //   }
     // },
-    // "TCG Collector (English + Japanese Cards, Beta)": {
-    //   variants: {
-    //     "Images": {
-    //       filePath: "tcgcollector/images.json",
-    //       extract: () => tcgCollectorUtils.extract()
-    //     },
-    //   }
-    // },
+    "Limitless TCG (English + Japanese Cards, Canary)": {
+      variants: {
+        "Images": {
+          filePath: "limitlesstcg/images.json",
+          extract: () => limitlessTcgUtils.extract()
+        },
+      }
+    },
   };
 
   for (const [srcName, desc] of Object.entries(sourceDescriptions)) {
