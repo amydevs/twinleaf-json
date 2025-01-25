@@ -81,8 +81,8 @@ async function main(args: string[]) {
   for (const [, desc] of Object.entries(remoteManifest)) {
     for (const [, variant] of Object.entries(desc.variants)) {
       const images: Record<string, string> = await import(
-        `twinleaf-json-remote/${variant.filePath}`
-      );
+        `twinleaf-json-remote/${variant.filePath}`,
+      ).then((e: { default: Record<string, string> }) => e.default);
       const filePath = path.join(publicFolder, variant.filePath);
       await fs.promises.mkdir(path.dirname(filePath), { recursive: true });
       await fs.promises.writeFile(
