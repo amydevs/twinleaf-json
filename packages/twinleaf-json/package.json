@@ -20,14 +20,15 @@
     "./*": "./dist/*"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "tsx": "^4.19.2",
-    "prettier": "^3.3.3",
     "@types/eslint": "^8.56.10",
+    "@types/node": "^20",
     "@typescript-eslint/eslint-plugin": "^8.1.0",
     "@typescript-eslint/parser": "^8.1.0",
     "eslint": "^8.57.0",
     "eslint-config-next": "^15.0.1",
-    "twinleaf-json-remote": "file:../twinleaf-json-remote"
+    "prettier": "^3.3.3",
+    "tsx": "^4.19.2",
+    "twinleaf-json-remote": "^1.0.0",
+    "twinleaf-json-common": "^1.0.0"
   }
 }

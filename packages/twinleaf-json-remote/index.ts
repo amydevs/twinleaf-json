@@ -1,5 +1,6 @@
 // import * as jpnApiUtils from "./sources/jpn-api/utils";
 // import * as tcgCollectorUtils from "./sources/tcg-collector/utils";
+import type * as common from "twinleaf-json-common";
 import * as limitlessTcgUtils from "./sources/limitless-tcg/utils";
 import * as util from "node:util";
 import * as fs from "node:fs";
@@ -28,19 +29,7 @@ async function main(args: string[]) {
 
   await fs.promises.mkdir(publicFolder, { recursive: true });
 
-  const sourceDescriptions: Record<
-    string,
-    {
-      hidden?: boolean;
-      variants: Record<
-        string,
-        {
-          filePath: string;
-          extract: () => Promise<Record<string, string>>;
-        }
-      >;
-    }
-  > = {
+  const sourceDescriptions: common.Sources = {
     // "JPN Cards API": {
     //   hidden: true,
     //   variants: {

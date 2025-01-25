@@ -1,3 +1,4 @@
+import type * as common from "twinleaf-json-common";
 import * as ptcgApiUtils from "./sources/ptcg-api/utils";
 import * as tcgdexUtils from "./sources/tcgdex/utils";
 import * as util from "node:util";
@@ -28,18 +29,7 @@ async function main(args: string[]) {
 
   await fs.promises.mkdir(publicFolder, { recursive: true });
 
-  const sourceDescriptions: Record<
-    string,
-    {
-      variants: Record<
-        string,
-        {
-          filePath: string;
-          extract: () => Promise<Record<string, string>>;
-        }
-      >;
-    }
-  > = {
+  const sourceDescriptions: common.Sources = {
     "Pokemon TCG API (English Cards Only, Stable)": {
       variants: {
         "Hi-Res Images": {
