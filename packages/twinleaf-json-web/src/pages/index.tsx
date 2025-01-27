@@ -30,7 +30,7 @@ export default function Home() {
         <title>Twinleaf Image JSON Repository</title>
         <meta
           name="description"
-          content="A repository of JSON files containing card image sources for the Twinleaf online simulator."
+          content="A repository of JSON files containing card image sources for the Twinleaf online simulator. Note that this link is not one that points to the JSON file itself, rather the JSON file URLs can be picked by visiting this link."
         />
         <meta name="keywords" content="twinleaf,json,image,missing,simulator" />
       </Head>
