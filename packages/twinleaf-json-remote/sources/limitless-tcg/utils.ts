@@ -15,7 +15,7 @@ export async function extractDescription(): Promise<string | undefined> {
   if (updates.length === 0) {
     return;
   }
-  return `Updates: ${updates.join(", ")}.`;
+  return `Updates: ${updates.join(", ")}`;
 }
 
 export async function extract(): Promise<Record<string, string>> {
