@@ -95,7 +95,7 @@ export default function Home() {
               </p>
               <p>
                 Last updated{" "}
-                {new Date(publicRuntimeConfig.modifiedDate).toLocaleString()}.
+                {new Date(publicRuntimeConfig.modifiedDate).toUTCString()}.
               </p>
             </CardContent>
             <CardFooter className="flex gap-1">

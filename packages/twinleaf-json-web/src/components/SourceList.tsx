@@ -1,6 +1,35 @@
 import type { Manifest } from "twinleaf-json-common";
 import imagesManifest from "twinleaf-json/manifest.json";
 import Link from "next/link";
+import { CopyIcon } from "lucide-react";
+import * as React from "react";
+
+function SourceLink({
+  children,
+  filePath,
+}: {
+  children?: React.ReactNode;
+  filePath: string;
+}) {
+  const ref = React.useRef<HTMLAnchorElement>(null);
+  return (
+    <>
+      <Link ref={ref} href={`/image-jsons/${filePath}`}>
+        {children}
+      </Link>
+      <a
+        className="mx-1"
+        href="#"
+        onClick={async (e) => {
+          e.preventDefault();
+          await navigator.clipboard.writeText(ref.current!.href);
+        }}
+      >
+        <CopyIcon size={16} className="inline" />
+      </a>
+    </>
+  );
+}
 
 export default function SourceList() {
   return (
@@ -20,9 +49,9 @@ export default function SourceList() {
             <ul>
               {Object.entries(desc.variants).map(([variantName, variant]) => (
                 <li key={variantName}>
-                  <Link href={`/image-jsons/${variant.filePath}`}>
+                  <SourceLink filePath={variant.filePath}>
                     {variantName}
-                  </Link>
+                  </SourceLink>
                 </li>
               ))}
             </ul>
