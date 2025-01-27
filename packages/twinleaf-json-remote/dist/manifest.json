@@ -1,5 +1,6 @@
 {
   "Limitless TCG (English + Japanese Cards, Canary)": {
+    "description": "Updates: Battle Partners.",
     "variants": {
       "Images": {
         "filePath": "limitlesstcg/images.json"
