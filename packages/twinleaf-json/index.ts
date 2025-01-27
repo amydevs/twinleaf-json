@@ -31,6 +31,7 @@ async function main(args: string[]) {
 
   const sourceDescriptions: common.Sources = {
     "Pokemon TCG API (English Cards Only, Stable)": {
+      description: await ptcgApiUtils.extractDescription(),
       variants: {
         "Hi-Res Images": {
           filePath: "ptcgapi/large.json",
@@ -43,6 +44,7 @@ async function main(args: string[]) {
       },
     },
     "TCGDex (English + Japanese Cards, Canary)": {
+      description: await tcgdexUtils.extractDescription(),
       variants: {
         "Hi-Res Images": {
           filePath: "tcgdex/large.json",
