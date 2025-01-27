@@ -2,11 +2,24 @@ import type {
   Serie as TCGDexSerie,
   Set as TCGDexSet,
 } from "../../deps/tcgdex-data/interfaces";
+import simpleGit from "simple-git";
 import * as fs from "node:fs";
 import * as url from "node:url";
 import * as path from "node:path";
 import * as utils from "../../utils";
 import * as tcgdexUtils from "./utils";
+
+export async function extractDescription(): Promise<string | undefined> {
+  // const repoPath = path.dirname(url.fileURLToPath(import.meta.resolve("../../../../")));
+  const gitFilePath = url.fileURLToPath(
+    import.meta.resolve("../../deps/tcgdex-data/.git"),
+  );
+  const repoDirectory = path.dirname(gitFilePath);
+  // const gitFile = await fs.promises.readFile(gitFilePath).then((e) => e.toString());
+  // const gitDir = path.resolve(path.join(repoDirectory, gitFile.substring(8)));
+  const logs = await simpleGit({ baseDir: repoDirectory }).log();
+  return logs.latest != null ? `Updates: ${logs.latest.message}` : undefined;
+}
 
 export async function extract({
   imageSize = "large",

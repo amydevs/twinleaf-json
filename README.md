@@ -6,5 +6,5 @@ This repository is a monorepo that contains both the code for generating the JSO
 
 Packages in this monorepo are contained in the `packages` directory. Here, you can find:
 
-- `twinleaf-json` - This package contains the code to build the JSON files, as well as a manifest that describes the JSON files that have been built.
+- `twinleaf-json` - This package contains the code to build the JSON files, as well as a manifest that describes the JSON files that have been built. Note that you will need `git` installed for update descriptions to be correctly fetched.
 - `twinleaf-json-web` - This package is a Next.js SSG SPA that serves as both the homepage and the guide for installation and usage.
