@@ -4,7 +4,7 @@ export async function extractDescription(): Promise<string | undefined> {
   const homeHtml = await fetch("https://limitlesstcg.com/").then((e) => e.text());
   const $ = cheerio.load(homeHtml);
   let updates: string[] = [];
-  $(".site-news").each((_, e) => {
+  $(".site-news a").each((_, e) => {
     const element = $(e);
     if (element.attr("href")?.startsWith("/cards")) {
       updates.push(element.text().trim());
