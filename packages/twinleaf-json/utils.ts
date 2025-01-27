@@ -7,5 +7,5 @@ export function extractFromSetNumber(
   if (matches == null) {
     return [null, setNumber];
   }
-  return [matches[1].length === 0 ? null : matches[1], matches[2]];
+  return [matches[1] == null || matches[1].length === 0 ? null : matches[1], matches[2]!];
 }
