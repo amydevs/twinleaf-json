@@ -1,9 +1,11 @@
 import * as cheerio from "cheerio";
 
 export async function extractDescription(): Promise<string | undefined> {
-  const homeHtml = await fetch("https://limitlesstcg.com/").then((e) => e.text());
+  const homeHtml = await fetch("https://limitlesstcg.com/").then((e) =>
+    e.text(),
+  );
   const $ = cheerio.load(homeHtml);
-  let updates: string[] = [];
+  const updates: string[] = [];
   $(".site-news a").each((_, e) => {
     const element = $(e);
     if (element.attr("href")?.startsWith("/cards")) {
@@ -13,7 +15,7 @@ export async function extractDescription(): Promise<string | undefined> {
   if (updates.length === 0) {
     return;
   }
-  return `Updates: ${updates.join(", ")}.`
+  return `Updates: ${updates.join(", ")}.`;
 }
 
 export async function extract(): Promise<Record<string, string>> {

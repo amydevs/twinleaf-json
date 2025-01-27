@@ -1,5 +1,4 @@
-import imagesManifest from "twinleaf-json/manifest.json";
-import Link from "next/link";
+import SourceList from "./SourceList";
 
 ## Installation Guide
 
@@ -9,24 +8,7 @@ First, you will need to choose one of the JSON files below to use as the sources
 
 The available image JSON sources:
 
-<ul>
-  {Object.entries(imagesManifest).map(([key, desc]) => {
-    return (
-      <li key={key}>
-        {key}
-        <ul>
-          {Object.entries(desc.variants).map(([variantName, variant]) => (
-            <li key={variantName}>
-              <Link href={`/image-jsons/${variant.filePath}`}>
-                {variantName}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </li>
-    );
-  })}
-</ul>
+<SourceList />
 
 Next, navigate to [play.twinleaf.gg](https://play.twinleaf.gg) and login if you have not yet already.
 
