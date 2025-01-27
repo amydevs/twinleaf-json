@@ -1,7 +1,7 @@
 import type { Manifest } from "twinleaf-json-common";
+import { CopyIcon } from "lucide-react";
 import imagesManifest from "twinleaf-json/manifest.json";
 import Link from "next/link";
-import { CopyIcon } from "lucide-react";
 import * as React from "react";
 
 function SourceLink({
@@ -16,9 +16,8 @@ function SourceLink({
     <>
       <Link ref={ref} href={`/image-jsons/${filePath}`}>
         {children}
-      </Link>
+      </Link>{" "}
       <a
-        className="mx-1"
         href="#"
         onClick={async (e) => {
           e.preventDefault();
