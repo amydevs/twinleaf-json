@@ -1,5 +1,21 @@
 import * as cheerio from "cheerio";
 
+export async function extractDescription(): Promise<string | undefined> {
+  const homeHtml = await fetch("https://limitlesstcg.com/").then((e) => e.text());
+  const $ = cheerio.load(homeHtml);
+  let updates: string[] = [];
+  $(".site-news").each((_, e) => {
+    const element = $(e);
+    if (element.attr("href")?.startsWith("/cards")) {
+      updates.push(element.text().trim());
+    }
+  });
+  if (updates.length === 0) {
+    return;
+  }
+  return `Updates: ${updates.join(", ")}.`
+}
+
 export async function extract(): Promise<Record<string, string>> {
   const regions = ["jp", ""] as const;
   const results: Record<string, string> = {};

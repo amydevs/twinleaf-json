@@ -1,6 +1,7 @@
 export type TexturePack = Record<string, string>;
 
 export type ManifestSourceDefinition = {
+    description?: string,
     variants: Record<string, ManifestVariantDefinition>,
 }
 
