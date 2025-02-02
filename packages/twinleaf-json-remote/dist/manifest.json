@@ -2,8 +2,11 @@
   "Limitless TCG (English + Japanese Cards, Canary)": {
     "description": "Updates: Battle Partners",
     "variants": {
-      "Images": {
-        "filePath": "limitlesstcg/images.json"
+      "Hi-Res Images": {
+        "filePath": "limitlesstcg/large.json"
+      },
+      "Low-Res Images": {
+        "filePath": "limitlesstcg/small.json"
       }
     }
   }
