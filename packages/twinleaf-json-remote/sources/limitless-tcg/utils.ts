@@ -1,7 +1,12 @@
 import * as cheerio from "cheerio";
+import { withCache } from "ultrafetch";
+
+// This is REALLY jank, make a better way to define multiple source definitions later.
+// This could crash CI memory if it is big enough lol.
+const cachedFetch = withCache(fetch);
 
 export async function extractDescription(): Promise<string | undefined> {
-  const homeHtml = await fetch("https://limitlesstcg.com/").then((e) =>
+  const homeHtml = await cachedFetch("https://limitlesstcg.com/").then((e) =>
     e.text(),
   );
   const $ = cheerio.load(homeHtml);
@@ -18,12 +23,16 @@ export async function extractDescription(): Promise<string | undefined> {
   return `Updates: ${updates.join(", ")}`;
 }
 
-export async function extract(): Promise<Record<string, string>> {
+export async function extract({
+  imageSize = "large",
+}: {
+  imageSize?: "large" | "small";
+} = {}): Promise<Record<string, string>> {
   const regions = ["jp", ""] as const;
   const results: Record<string, string> = {};
 
   for (const region of regions) {
-    const setsHtml = await fetch(
+    const setsHtml = await cachedFetch(
       `https://limitlesstcg.com/cards/${region}`,
     ).then((p) => p.text());
     const $ = cheerio.load(setsHtml);
@@ -63,13 +72,13 @@ export async function extract(): Promise<Record<string, string>> {
 
     const proms = setCodes.map(async (setCode) => {
       const results: Record<string, string> = {};
-      const cardsHtml = await fetch(
+      const cardsHtml = await cachedFetch(
         `https://limitlesstcg.com/cards/${region === "" ? setCode : `${region}/${setCode}`}?display=classic`,
       ).then((p) => p.text());
       const $ = cheerio.load(cardsHtml);
       $(".card-classic").each((_, e) => {
         const cardElement = $(e);
-        const cardImgSrc = cardElement.find("img.card").attr("src");
+        let cardImgSrc = cardElement.find("img.card").attr("src");
         const cardSetNumber = cardElement
           .find(".card-set-info")
           .text()
@@ -77,6 +86,12 @@ export async function extract(): Promise<Record<string, string>> {
           ?.trim();
         if (cardImgSrc == null || cardSetNumber == null) {
           return;
+        }
+        if (imageSize === "large") {
+          const matchedSmall = /_XS(\..*?)$/.exec(cardImgSrc);
+          if (matchedSmall?.index != null && matchedSmall[1] != null) {
+            cardImgSrc = `${cardImgSrc.substring(0, matchedSmall.index)}${matchedSmall[1]}`;
+          }
         }
         results[`${setCode} ${cardSetNumber}`] = cardImgSrc;
       });

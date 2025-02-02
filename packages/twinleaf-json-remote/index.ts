@@ -42,9 +42,13 @@ async function main(args: string[]) {
     "Limitless TCG (English + Japanese Cards, Canary)": {
       description: await limitlessTcgUtils.extractDescription(),
       variants: {
-        Images: {
-          filePath: "limitlesstcg/images.json",
-          extract: () => limitlessTcgUtils.extract(),
+        "Hi-Res Images": {
+          filePath: "limitlesstcg/large.json",
+          extract: () => limitlessTcgUtils.extract({ imageSize: "large" }),
+        },
+        "Low-Res Images": {
+          filePath: "limitlesstcg/small.json",
+          extract: () => limitlessTcgUtils.extract({ imageSize: "small" }),
         },
       },
     },
