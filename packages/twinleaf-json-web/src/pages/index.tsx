@@ -65,6 +65,7 @@ export default function Home() {
                         width={180}
                         height={250}
                         placeholder={cardBackPlaceholder}
+                        fetchPriority="low"
                         loading="lazy"
                       />
                     </div>
