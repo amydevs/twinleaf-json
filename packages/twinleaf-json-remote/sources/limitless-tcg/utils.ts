@@ -28,7 +28,10 @@ export async function extract({
 }: {
   imageSize?: "large" | "small";
 } = {}): Promise<Record<string, string>> {
-  const regions = ["jp", ""] as const;
+  const regions = [
+    "jp",
+    "",
+  ] as const;
   const results: Record<string, string> = {};
 
   for (const region of regions) {
@@ -48,12 +51,13 @@ export async function extract({
             "Sword & Shield Promos": "SWSH",
           }
         : {};
-    const setCodes: string[] = [];
+    const setCodeUrlsMap: Record<string, string> = {};
     $("table.sets-table > tbody > tr").each((_, e) => {
       const setCodeElement = $($(e).children()[0]);
       if (setCodeElement[0]!.name === "th") {
         return;
       }
+      const setUrl = `https://limitlesstcg.com${setCodeElement.find('a').attr('href')}`;
       let setName = setCodeElement
         .html()
         ?.match(/<img.*?set.*?>(.*?)<span/m)?.[1];
@@ -67,14 +71,14 @@ export async function extract({
         console.warn(`${setName} could not be processed.`);
         return;
       }
-      setCodes.push(setCode);
+      setCodeUrlsMap[setCode] = setUrl;
     });
 
-    const proms = setCodes.map(async (setCode) => {
+    const proms = Object.entries(setCodeUrlsMap).map(async ([setCode, setUrlString]) => {
       const results: Record<string, string> = {};
-      const cardsHtml = await cachedFetch(
-        `https://limitlesstcg.com/cards/${region === "" ? setCode : `${region}/${setCode}`}?display=classic`,
-      ).then((p) => p.text());
+      const setUrl = new URL(setUrlString);
+      setUrl.searchParams.set("display", "classic");
+      const cardsHtml = await cachedFetch(setUrl).then((p) => p.text());
       const $ = cheerio.load(cardsHtml);
       $(".card-classic").each((_, e) => {
         const cardElement = $(e);
