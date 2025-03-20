@@ -1,5 +1,6 @@
 {
   "Limitless TCG (English + Japanese Cards, Canary)": {
+    "priority": -9999,
     "description": "Updates: SV9a",
     "variants": {
       "Hi-Res Images": {
