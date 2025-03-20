@@ -33,30 +33,32 @@ function SourceLink({
 export default function SourceList() {
   return (
     <ul>
-      {Object.entries(imagesManifest as Manifest).map(([key, desc]) => {
-        return (
-          <li key={key}>
-            {key}
-            {desc.description != null ? (
-              <>
-                <br />
-                {desc.description}
-              </>
-            ) : (
-              ""
-            )}
-            <ul>
-              {Object.entries(desc.variants).map(([variantName, variant]) => (
-                <li key={variantName}>
-                  <SourceLink filePath={variant.filePath}>
-                    {variantName}
-                  </SourceLink>
-                </li>
-              ))}
-            </ul>
-          </li>
-        );
-      })}
+      {Object.entries(imagesManifest as Manifest)
+        .sort(([, a], [, b]) => (a.priority ?? 0) - (b.priority ?? 0))
+        .map(([key, desc]) => {
+          return (
+            <li key={key}>
+              {key}
+              {desc.description != null ? (
+                <>
+                  <br />
+                  {desc.description}
+                </>
+              ) : (
+                ""
+              )}
+              <ul>
+                {Object.entries(desc.variants).map(([variantName, variant]) => (
+                  <li key={variantName}>
+                    <SourceLink filePath={variant.filePath}>
+                      {variantName}
+                    </SourceLink>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          );
+        })}
     </ul>
   );
 }
