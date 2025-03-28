@@ -1,6 +1,7 @@
 {
   "Limitless TCG (English + Japanese Cards, Canary)": {
     "priority": -9999,
+    "description": "Updates: Journey Together",
     "variants": {
       "Hi-Res Images": {
         "filePath": "limitlesstcg/large.json"
