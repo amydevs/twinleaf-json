@@ -1,7 +1,7 @@
 {
   "Limitless TCG (English + Japanese Cards, Canary)": {
     "priority": -9999,
-    "description": "Updates: Destined Rivals",
+    "description": "Updates: Destined Rivals, Black Bolt, White Flare",
     "variants": {
       "Hi-Res Images": {
         "filePath": "limitlesstcg/large.json"
