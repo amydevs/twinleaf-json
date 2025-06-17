@@ -1,7 +1,7 @@
 {
   "Limitless TCG (English + Japanese Cards, Canary)": {
     "priority": -9999,
-    "description": "Updates: Destined Rivals, SV11",
+    "description": "Updates: SV11",
     "variants": {
       "Hi-Res Images": {
         "filePath": "limitlesstcg/large.json"
