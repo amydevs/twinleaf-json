@@ -1,7 +1,6 @@
 {
   "Limitless TCG (English + Japanese Cards, Canary)": {
     "priority": -9999,
-    "description": "Updates: Nihil Zero, Ascended Heroes",
     "variants": {
       "Hi-Res Images": {
         "filePath": "limitlesstcg/large.json"
