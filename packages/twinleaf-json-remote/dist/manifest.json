@@ -1,7 +1,7 @@
 {
   "Limitless TCG (English + Japanese Cards, Canary)": {
     "priority": -9999,
-    "description": "Updates: Abyss Eye",
+    "description": "Updates: Abyss Eye, CRI",
     "variants": {
       "Hi-Res Images": {
         "filePath": "limitlesstcg/large.json"
